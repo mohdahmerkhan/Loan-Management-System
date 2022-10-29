@@ -1,0 +1,38 @@
+-----------------
+Development Steps
+-----------------
+
+Step 1 : Create Database (SQL Server)
+    Create Tables
+        User
+        Role
+        Loan
+        LoanRequest
+        LoanHistory  
+
+Step 2 : Create REST API
+        1 - Create Spring Project
+        2 - Create Packages
+            com.nissan.model
+            com.nissan.repo
+            com.nissan.service
+            con.nissa.rest
+
+        3 - Configure POM & Application Properties
+        4 - Create Models
+        5 - Create Repo
+        6 - Create Services
+        7 - Create REST Controller
+
+        ----> Generates REST API
+        
+        8 - Test in Postman
+        
+Step 3 : Create Angular Front-end
+        1 - Create Angular Project
+        2 - Create Modules
+        3 - Create Components
+        4 - Create Services     (Using REST API)
+        5 - Integrate Routing
+        6 - Integrate AuthGuard
+        7 - Customizing Styles and alll
