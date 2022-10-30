@@ -1,0 +1,30 @@
+package com.nissan.repo;
+
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+import org.springframework.stereotype.Repository;
+
+import com.nissan.model.User;
+
+@Repository
+public interface IUserRepository extends JpaRepositoryImplementation<User,Integer>
+{
+	//Spring Data JPA -- JpaRepositoryImplementation, 
+	
+	//CustomerRetrieve (Email or Phone) & Password
+	@Query("from User where (email = ?1 or phoneNo = ?1) and password = ?2 and isActive = true")
+	public User findByEmailPhoneAndPassword(String emailOrPhone, String password);
+	
+	
+	//Disable User
+	@Modifying
+	@Query("update User u set u.isActive=false where u.userID=?1")
+	public void disableById(int userID);
+	
+	//Enable User
+	@Modifying
+	@Query("update User u set u.isActive=true where u.userID=?1")
+	public void enableById(int userID);
+	
+}
