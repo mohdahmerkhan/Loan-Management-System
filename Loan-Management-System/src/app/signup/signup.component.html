@@ -1,0 +1,116 @@
+<div class="container">
+  <form class="row g-3" name="userForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+    <h3>
+      Sign Up
+    </h3>
+
+    <!-- Name -->
+    <div class="col-12">
+      <label for="name" class="form-label">
+        Name
+      </label>
+      <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your Name"
+        #name="ngModel" [(ngModel)]="usersService.formUserData.name"
+        [ngClass]="{'is-invalid':name.touched && name.invalid}">
+
+      <!-- Name Validation -->
+      <div class="validation-error" *ngIf="name.touched && name.invalid">
+        <div *ngIf="name.errors.required">
+          Name should not be empty
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Email -->
+    <div class="col-md-6">
+      <label for="email" class="form-label">
+        Email
+      </label>
+      <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your Email"
+        #email="ngModel" [(ngModel)]="usersService.formUserData.email"
+        [ngClass]="{'is-invalid':email.touched && email.invalid}">
+
+      <!-- Email Validation -->
+      <div class="validation-error" *ngIf="email.touched && email.invalid">
+        <div *ngIf="email.errors.required">
+          Email should not be empty
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Phone Number -->
+    <div class="col-md-6">
+      <label for="phoneNo" class="form-label">
+        Phone Number
+      </label>
+      <input type="tel" class="form-control" id="phoneNo" name="phoneNo" required placeholder="Enter your Phone Number"
+        #phoneNo="ngModel" [(ngModel)]="usersService.formUserData.phoneNo"
+        [ngClass]="{'is-invalid':phoneNo.touched && phoneNo.invalid}">
+
+      <!-- Phone Number Validation -->
+      <div class="validation-error" *ngIf="phoneNo.touched && phoneNo.invalid">
+        <div *ngIf="phoneNo.errors.required">
+          Phone Number should not be empty
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Passwrod -->
+    <div class="col-md-6">
+      <label for="password" class="form-label">
+        Password
+      </label>
+      <input type="password" class="form-control" id="password" name="password" required
+        placeholder="Enter your Password" #password="ngModel" [(ngModel)]="usersService.formUserData.password"
+        [ngClass]="{'is-invalid':password.touched && password.invalid}">
+
+      <!-- Password Validation -->
+      <div class="validation-error" *ngIf="password.touched && password.invalid">
+        <div *ngIf="password.errors.required">
+          Password should not be empty
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="col-md-6">
+      <label for="dateOfBirth" class="form-label">
+        Date of Birth
+      </label>
+      <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required #dateOfBirth="ngModel"
+        [(ngModel)]="usersService.formUserData.dateOfBirth"
+        [ngClass]="{'is-invalid':dateOfBirth.touched && dateOfBirth.invalid}">
+
+      <!-- Date of Birth Validation -->
+      <div class="validation-error" *ngIf="dateOfBirth.touched && dateOfBirth.invalid">
+        <div *ngIf="dateOfBirth.errors.required">
+          Date of Birth should be Choosen
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Submit & Reset Buttons -->
+    <div class="col-12">
+      Already have an account?
+      <a href="">
+        Sign In
+      </a>
+      <span class="float-end">
+        <button type="reset" class="btn btn-secondary">
+          Reset
+        </button>
+        &nbsp;
+        <button type="submit" class="btn btn-primary" [disabled]="!(form.valid && form.dirty)">
+          Sign Up
+        </button>
+      </span>
+    </div>
+    <br>
+
+  </form>
+</div>

@@ -1,0 +1,54 @@
+<div class="container">
+    
+    <div class="header">
+        <h3>
+            List Of Loan Request    (s)
+        </h3>
+        <hr style="color:transparent;">
+    </div>
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Request Date</th>
+                <th>Approve Date</th>
+                <th>Income Mode</th>
+                <th>Tenure</th>
+                <th>Remarks</th>
+                <th>Govt. ID</th>
+                <th>Loan Type</th>
+                <th>Name</th>
+                <th>Assigned To</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let loanRequest of loanService.loanRequests">
+                <td>{{loanRequest.loanRequestID}}</td>
+                <td>{{loanRequest.amount}}</td>
+                <td>{{loanRequest.status}}</td>
+                <td>{{loanRequest.requestDate}}</td>
+                <td>{{loanRequest.approveDate}}</td>
+                <td>{{loanRequest.sourceOfIncome}}</td>
+                <td>{{loanRequest.tenure}}</td>
+                <td>{{loanRequest.remarks}}</td>
+                <td>{{loanRequest.govtID}}</td>
+                <td>{{loanRequest.loan.loanType}}</td>
+                <td>{{loanRequest.user.name}}</td>
+                <td>{{loanRequest.assignedTo}}</td>
+                <td>
+                    <button class="btn btn-success">
+                        Accept
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-danger">
+                        Reject
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    </div>

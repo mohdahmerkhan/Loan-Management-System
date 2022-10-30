@@ -1,0 +1,43 @@
+<div class="container">
+<div class="header">
+    <h3>
+        List Of User(s)
+    </h3>
+    <hr style="color:transparent;">
+</div>
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone No.</th>
+            <th>Date of Birth</th>
+            <th>Role</th>
+            <th>Password</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of usersService.users">
+            <td>{{user.userID}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phoneNo}}</td>
+            <td>{{user.dateOfBirth}}</td>
+            <td>{{user.role.roleName}}</td>
+            <td>{{user.password}}</td>
+            <td>
+                <button class="btn btn-primary">
+                    Enable
+                </button>
+                &nbsp;
+                <button class="btn btn-danger">
+                    Disable
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</div>

@@ -1,0 +1,60 @@
+<!-- Reactive Form --Model-Driven Approach -->
+<div class="container">
+  <div>
+      <h3>
+          Sign In
+      </h3>
+      <hr>    
+      <!-- Reactive Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="loginCredentials()">
+          <!-- EmailOrPhone -->
+          <div>
+              <input type="text"
+              placeholder="Enter Email or Phone No."
+              formControlName="emailOrPhone"
+              autocomplete="off"
+              class="form-control"
+              required>
+          </div>
+          <!-- EmailOrPhone Validation Message -->
+          <div *ngIf="isSubmitted && formControls.emailOrPhone.errors">
+              <div *ngIf="formControls.emailOrPhone.errors.required"
+              class="loginError">
+                  Email or Phone is required
+              </div>
+          </div>
+
+          <!-- Password -->
+          <div>
+              &nbsp;
+              <input type="password"
+              placeholder="Enter Password"
+              formControlName="password"
+              autocomplete="off"
+              class="form-control"
+              required>
+          </div>
+          <!-- Password Validation Message -->
+          <div *ngIf="isSubmitted && formControls.password.errors">
+              <div *ngIf="formControls.password.errors.required"
+              class="loginError">
+                  Password is required
+              </div>
+          </div>
+          <br>
+          <!-- Submit -->
+          <div>
+              <button type="submit" class="btn btn-md btn-outline-primary">
+                  <i class="fa fa-sign-in">
+                  </i>
+                  Login
+              </button>
+          </div>
+
+          <!-- Displyaing Error -->
+          <div *ngIf="error" class="loginError">
+              {{error}}
+          </div>
+      </form>
+  </div>
+</div>

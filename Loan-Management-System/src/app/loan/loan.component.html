@@ -1,0 +1,124 @@
+<div class="container">
+  <form class="row g-3" name="userForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+    <h3>
+      Add Loan Request
+    </h3>
+
+    <!-- User ID -->
+    <input type="hidden" id="userID" name="userID" 
+    #userID="ngModel" [(ngModel)]="loanService.formLoanRequest.userID" value=0>
+
+    <!-- Loan Type -->
+    <div class="col-12">
+      <label for="loanID" class="form-label">
+        Loan Type
+      </label>
+      <select name="loanID" id="loanID" class="form-control"
+      #loanID="ngModel" required
+      [(ngModel)]="loanService.formLoanRequest.loanID">
+
+          <option value=0 selected disabled>
+              Choose Role
+          </option>
+          <option *ngFor="let loan of loanService.loans" value={{loan.loanID}}>
+              {{loan.loanType}}
+          </option>
+
+      </select>
+      <!-- Loan Type Validation -->
+      <div class="validation-error" *ngIf="loanID.touched && loanID.invalid">
+        <div *ngIf="loanID.errors.required">
+          Name should not be empty
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Amount -->
+    <div class="col-md-6">
+      <label for="amount" class="form-label">
+        Amount
+      </label>
+      <input type="number" class="form-control" id="amount" name="amount" required placeholder="Enter the amount"
+        #amount="ngModel" [(ngModel)]="loanService.formLoanRequest.amount"
+        [ngClass]="{'is-invalid':amount.touched && amount.invalid}">
+
+      <!-- Amount Validation -->
+      <div class="validation-error" *ngIf="amount.touched && amount.invalid">
+        <div *ngIf="amount.errors.required">
+          Amount should not be empty
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Source of Income -->
+    <div class="col-md-6">
+      <label for="sourceOfIncome" class="form-label">
+        Source of Income
+      </label>
+      <input type="text" class="form-control" id="sourceOfIncome" name="sourceOfIncome" required placeholder="Enter your Source od Income"
+        #sourceOfIncome="ngModel" [(ngModel)]="loanService.formLoanRequest.sourceOfIncome"
+        [ngClass]="{'is-invalid':sourceOfIncome.touched && sourceOfIncome.invalid}">
+
+      <!-- Source of Income Validation -->
+      <div class="validation-error" *ngIf="sourceOfIncome.touched && sourceOfIncome.invalid">
+        <div *ngIf="sourceOfIncome.errors.required">
+          Source of Income should not be empty
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Govt. ID -->
+    <div class="col-md-6">
+      <label for="govtID" class="form-label">
+        Govt. ID
+      </label>
+      <input type="text" class="form-control" id="govtID" name="govtID" required
+        placeholder="Enter Govt. ID" #govtID="ngModel" [(ngModel)]="loanService.formLoanRequest.govtID"
+        [ngClass]="{'is-invalid':govtID.touched && govtID.invalid}">
+
+      <!-- Govt. ID Validation -->
+      <div class="validation-error" *ngIf="govtID.touched && govtID.invalid">
+        <div *ngIf="govtID.errors.required">
+          Govt. ID field should not be empty
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tenure -->
+    <div class="col-md-6">
+      <label for="tenure" class="form-label">
+        Tenure
+      </label>
+      <input type="number" class="form-control" id="tenure" name="tenure" required #tenure="ngModel"
+        [(ngModel)]="loanService.formLoanRequest.tenure"
+        [ngClass]="{'is-invalid':tenure.touched && tenure.invalid}">
+
+      <!-- Tenure Validation -->
+      <div class="validation-error" *ngIf="tenure.touched && tenure.invalid">
+        <div *ngIf="tenure.errors.required">
+          Tenure should be Choosen
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Submit & Reset Buttons -->
+    <div class="col-12">
+      <span class="float-end">
+        <button type="reset" class="btn btn-secondary">
+          Reset
+        </button>
+        &nbsp;
+        <button type="submit" class="btn btn-primary" [disabled]="!(form.valid && form.dirty)">
+          Add Request
+        </button>
+      </span>
+    </div>
+    <br>
+
+  </form>
+</div>
