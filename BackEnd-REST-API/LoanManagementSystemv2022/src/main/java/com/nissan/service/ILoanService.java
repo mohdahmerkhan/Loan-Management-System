@@ -13,13 +13,13 @@ public interface ILoanService
 	List<Loan> findAllLoans();
 	
 	//Find All LoanRequest
-	List<LoanRequest> finAllLoanRequests();
+	List<LoanRequest> finAllLoanRequests(int userID, int roleID);
 	
 	//Add Loan Request
 	LoanRequest addLoanRequest(LoanRequestDTO loanRequestDTO);
 	
 	//Update Loan Request
-	LoanRequest updateLoanRequest(LoanRequest loanRequest);
+	LoanRequest updateLoanRequest(LoanRequestDTO loanRequestDTO, int loanRequestID, boolean isApproved, int roleID);
 
 }
 

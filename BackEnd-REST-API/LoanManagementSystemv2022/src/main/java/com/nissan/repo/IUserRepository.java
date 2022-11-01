@@ -16,6 +16,10 @@ public interface IUserRepository extends JpaRepositoryImplementation<User,Intege
 	@Query("from User where (email = ?1 or phoneNo = ?1) and password = ?2 and isActive = true")
 	public User findByEmailPhoneAndPassword(String emailOrPhone, String password);
 	
+	//Get User by User ID
+	@Query("from User where userID = ?1 and isActive = true")
+	public User findByUserID(int userID);
+	
 	
 	//Disable User
 	@Modifying
@@ -26,5 +30,8 @@ public interface IUserRepository extends JpaRepositoryImplementation<User,Intege
 	@Modifying
 	@Query("update User u set u.isActive=true where u.userID=?1")
 	public void enableById(int userID);
+	
+	
+	
 	
 }

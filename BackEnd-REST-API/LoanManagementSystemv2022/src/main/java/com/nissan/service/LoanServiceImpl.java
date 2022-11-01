@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nissan.model.Loan;
 import com.nissan.model.LoanRequest;
 import com.nissan.model.LoanRequestDTO;
+import com.nissan.model.User;
 import com.nissan.repo.ILoanRepository;
 import com.nissan.repo.ILoanRequestRepository;
+import com.nissan.repo.IUserRepository;
 
 @Service
 public class LoanServiceImpl implements ILoanService
@@ -24,6 +26,9 @@ public class LoanServiceImpl implements ILoanService
 	@Autowired
 	ILoanRequestRepository loanRequestRepo;
 	
+	@Autowired
+	IUserRepository userRepo;
+	
 
 	@Override
 	public List<Loan> findAllLoans()
@@ -33,9 +38,32 @@ public class LoanServiceImpl implements ILoanService
 
 
 	@Override
-	public List<LoanRequest> finAllLoanRequests()
+	public List<LoanRequest> finAllLoanRequests(int userID, int roleID)
 	{
-		return loanRequestRepo.findAll();
+		//Check Role
+		
+		if(roleID == 1 && userID == 1)
+		{
+			User user = userRepo.findByUserID(userID);
+			System.out.println("here"+user.getRole().getRoleID());
+			
+			if(user.getRole().getRoleID() == 1)
+			{
+				return loanRequestRepo.findAll();
+			}
+			return null;
+			
+		}
+		else if(roleID == 2)
+		{
+			return loanRequestRepo.findLoanRequestsForOfficer(userID);
+		}
+		else if(roleID == 3)
+		{
+			return loanRequestRepo.findLoanRequestsForCustomer(userID);
+		}
+		
+		return null;
 	}
 	
 	//Add LoanRequest
@@ -59,8 +87,41 @@ public class LoanServiceImpl implements ILoanService
 	//Update User
 	@Transactional
 	@Override
-	public LoanRequest updateLoanRequest(LoanRequest loanRequest)
+	public LoanRequest updateLoanRequest(LoanRequestDTO loanRequestDTO, int loanRequestID, boolean isApproved, int roleID)
 	{
+		LoanRequest loanRequest = new LoanRequest(loanRequestDTO);
+		
+		//Setting Back Request Date
+		loanRequest.setRequestDate(loanRequestRepo.frindRequestDateByUserID(loanRequestID));
+		
+		//Setting the loanRequestID
+		loanRequest.setLoanRequestID(loanRequestID);
+		
+		if(roleID == 1)
+		{
+			if(isApproved)
+			{
+				loanRequest.setStatus("Approved");
+			}
+			else
+			{
+				loanRequest.setStatus("Rejected");
+			}
+		}
+		
+		if(roleID == 2)
+		{
+			if(isApproved)
+			{
+				loanRequest.setStatus("Accepted");
+			}
+			else
+			{
+				loanRequest.setStatus("Cancelled");
+			}
+		}
+		
+				
 		return loanRequestRepo.save(loanRequest);
 	}
 	

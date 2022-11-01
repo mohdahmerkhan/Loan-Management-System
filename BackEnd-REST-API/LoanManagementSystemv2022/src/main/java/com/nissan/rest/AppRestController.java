@@ -64,13 +64,19 @@ public class AppRestController
 		return loanService.findAllLoans();
 	}
 	
-	//List all LoanRequests
-	@GetMapping("loanRequests")
-	public List<LoanRequest> findAllLoanRequest()
-	{
-		return loanService.finAllLoanRequests();
-	}
+//	//List all LoanRequests
+//	@GetMapping("loanRequests")
+//	public List<LoanRequest> findAllLoanRequest()
+//	{
+//		return loanService.finAllLoanRequests();
+//	}
 
+	//List all LoanRequests
+	@GetMapping("loanRequests/{userID}&{roleID}")
+	public List<LoanRequest> findAllLoanRequest(@PathVariable int userID, @PathVariable int roleID)
+	{
+		return loanService.finAllLoanRequests(userID, roleID);
+	}
 
 	
 	@GetMapping("userLogin/{emailOrPhone}&{password}")
@@ -98,18 +104,18 @@ public class AppRestController
 	
 	//Add LoanRequests
 	@PostMapping("loanRequests")
-	public ResponseEntity<LoanRequest> addUser(@RequestBody LoanRequestDTO loanRequestDTO)
+	public ResponseEntity<LoanRequest> addLoanRequest(@RequestBody LoanRequestDTO loanRequestDTO)
 	{
 		System.out.println("Inserting a Loan Request");
 		return new ResponseEntity<LoanRequest>(loanService.addLoanRequest(loanRequestDTO),HttpStatus.OK);
 	}
 	
 	//Update LoanRequests
-	@PutMapping("loanRequests")
-	public LoanRequest updateUser(@RequestBody LoanRequest loanRequest)
+	@PutMapping("loanRequests/{loanRequestID}&{isApproved}&{roleID}")
+	public LoanRequest updateLoanRequest(@RequestBody LoanRequestDTO loanRequestDTO,@PathVariable int loanRequestID, @PathVariable boolean isApproved, @PathVariable int roleID)
 	{
 		System.out.println("Updating a Loan request");
-		return loanService.updateLoanRequest(loanRequest);
+		return loanService.updateLoanRequest(loanRequestDTO, loanRequestID, isApproved, roleID);
 	}
 	
 	
