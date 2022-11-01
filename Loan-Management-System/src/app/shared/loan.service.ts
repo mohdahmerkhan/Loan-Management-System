@@ -19,7 +19,6 @@ export class LoanService {
 
   constructor(private httpClient: HttpClient)
   {
-      
   }
 
   //Call REST API
@@ -60,7 +59,7 @@ export class LoanService {
   
   // INSERT
   insertLoanRequest(loanRequestDTO: LoanRequestDTO): Observable<any> {
-    
+
     return this.httpClient.post(environment.apiUrl + 'api/loanRequests', loanRequestDTO);
   }
 

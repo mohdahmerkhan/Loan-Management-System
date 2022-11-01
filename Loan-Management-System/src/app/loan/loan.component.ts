@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { LoanRequestDTO } from '../shared/loan-request-dto';
 import { LoanService } from '../shared/loan.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { LoanService } from '../shared/loan.service';
 export class LoanComponent implements OnInit {
 
   // DI : Constructor Injection
-  constructor(public loanService: LoanService) { }
+  constructor(public loanService: LoanService) { 
+  }
 
   //Life Cycle Hook
   ngOnInit(): void

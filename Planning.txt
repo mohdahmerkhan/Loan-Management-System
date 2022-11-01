@@ -2,4 +2,25 @@
 Loan Management System
 ----------------------
 
+Services needed
+
+1 - Admin --------------------
+    enableDisableUser(int userID, boolean enable)
+    findAllLoanRequestsByUserID(int userID)
+    assignRequestToOfficer() ---> requires ---> findAllOfficers()
+
+    approveRejectLoanRequest(boolean isApproved, int userID)
+    updateRemarks()
+2 - Officer-------------------------
+    findAllLoanRequestsBuUserID(int userID)
+    approveRejectLoanRequest(boolean isApproved, int userID)
+    updateRemarks()
+    
+3 - Customer--------------------
+    findAllLoanRequestsBuUserID(int userID)
+
+
+
+
+
 
