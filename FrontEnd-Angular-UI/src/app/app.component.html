@@ -1,33 +1,89 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <h1 class="display-6">
-                <b>
-                    &nbsp;&nbsp;Loan Management System
-                </b>
-            </h1>
-        </ul>
-        <button class="btn btn-outline-primary" type="submit">
-            <b>Log In</b>
-        </button>
-        &nbsp;&nbsp;&nbsp;
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <h1 class="display-6">
+                    <b>
+                        &nbsp;&nbsp;Loan Management System
+                    </b>
+                </h1>
+            </ul>
+            <button class="btn btn-outline-primary" type="submit" routerLink="/login">
+                <b>Log In</b>
+            </button>
+            &nbsp;&nbsp;&nbsp;
         </div>
-</div>
+    </div>
+</nav>
+<nav class="sticky-top navbar navbar-dark bg-light container-fluid justify-content-start">
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <span>
+        &nbsp;&nbsp;
+        <button class="btn btn-outline-secondary me-2" type="button" routerLink="/home">
+            <b>Home</b>
+        </button>
+    </span>
+    <span>
+        &nbsp;&nbsp;
+        <button class="btn btn-outline-secondary me-2" type="button" routerLink="/about-us">
+            <b>About Us</b>
+        </button>
+    </span>
+    <span>
+        &nbsp;&nbsp;
+        <button class="btn btn-outline-secondary me-2" type="button" routerLink="/contact-us">
+            <b>Contact Us</b>
+        </button>
+    </span>
+    <span *ngIf="(role == 1)">
+        &nbsp;&nbsp;
+        <button class="btn btn-outline-secondary me-2" type="button" routerLink="/loan-request">
+            <b>Loan Requests List</b>
+        </button>
+    </span>
+    <span *ngIf="(role == 1)">
+        &nbsp;&nbsp;
+        <button class="btn btn-outline-secondary me-2" type="button" routerLink="/user-list">
+            <b>Users List</b>
+        </button>
+    </span>
+    <span *ngIf="(role == 3)">
+        &nbsp;&nbsp;
+        <button class="btn btn-outline-secondary me-2" type="button" routerLink="/loan">
+            <b>Request For Loan</b>
+        </button>
+    </span>
+    <span *ngIf="(role == 3)">
+        &nbsp;&nbsp;
+        <button class="btn btn-outline-secondary me-2" type="button" routerLink="/loan-request">
+            <b>Your Requests</b>
+        </button>
+    </span>
+    <span *ngIf="(role == 2)">
+        &nbsp;&nbsp;
+        <button class="btn btn-outline-secondary me-2" type="button" routerLink="/loan-request">
+            <b>Assigned Request(s) List</b>
+        </button>
+    </span>
+    <span *ngIf="(role == 3)">
+        &nbsp;&nbsp;
+        <button class="btn btn-outline-secondary me-2" type="button" routerLink="/feedback-list">
+            <b>Feedback List</b>
+        </button>
+    </span>
 </nav>
 
+<!-- <app-home></app-home> -->
+<!-- <app-aboutus></app-aboutus> -->
+<!-- <app-contactus></app-contactus> -->
+<!-- <app-pagenotfound></app-pagenotfound> -->
+<!-- <app-login></app-login> -->
+<!-- <app-signup></app-signup> -->
+<!-- <app-admin></app-admin> -->
 
-<app-home></app-home>
-<app-aboutus></app-aboutus>
-<app-contactus></app-contactus>
-<app-pagenotfound></app-pagenotfound>
-<app-login></app-login>
-<app-signup></app-signup>
-<app-admin></app-admin>
-
-<app-customer></app-customer>
-<app-officer></app-officer>
-
+<!-- <app-customer></app-customer> -->
+<!-- <app-officer></app-officer> -->
+<router-outlet></router-outlet>
 
 <footer class="sticky-bottom text-center">
     <hr>

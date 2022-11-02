@@ -26,13 +26,19 @@ export class LoanService {
   getAllLoanRequests(): Observable<any> {
     //  http://localhost:9095/api/loanRequests
     
-    return this.httpClient.get(environment.apiUrl + "api/loanRequests");
+    var userID =  localStorage.getItem("UserID");
+    var roleID =  localStorage.getItem("roleIDloan");
+    
+    return this.httpClient.get(environment.apiUrl + "api/loanRequests/"+userID+"&"+roleID);
+    
   }
 
   //  2 Retrieve all Loan Request List for Listing
   bindGetAllLoanRequestList() {
     
-    this.httpClient.get(environment.apiUrl + 'api/loanRequests')
+    var userID =  localStorage.getItem("userID");
+    var roleID =  localStorage.getItem("roleID");
+    this.httpClient.get(environment.apiUrl + 'api/loanRequests/'+userID+"&"+roleID)
       .toPromise()
       .then(
         (response) => {
